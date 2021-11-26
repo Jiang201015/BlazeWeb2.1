@@ -1,0 +1,261 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}
+首页
+{% endblock %}
+{% block content %}
+<link href="{% static 'css/home.css' %}" rel="stylesheet">
+<script src="{% static 'js/jqthumb.min.js' %}"></script>
+<!-- 广告横幅 -->
+<div id="ad" class="carousel slide" data-ride="carousel" data-interval="5000">
+  <ol class="carousel-indicators">
+    <li data-target="#ad" data-slide-to="0" class="active"></li>
+    <li data-target="#ad" data-slide-to="1"></li>
+    <li data-target="#ad" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="item active">
+      <img src="{% static 'img/banner1.jpg' %}" alt="广告横幅1">
+    </div>
+    <div class="item">
+      <img src="{% static 'img/banner2.jpg' %}" alt="广告横幅2">
+    </div>
+    <div class="item">
+      <img src="{% static 'img/banner3.jpg' %}" alt="广告横幅3">
+    </div>
+  </div>
+  <a class="left carousel-control" href="#ad" data-slide="prev"><span
+      class="glyphicon glyphicon-chevron-left"></span></a>
+  <a class="right carousel-control" href="#ad" data-slide="next"><span
+      class="glyphicon glyphicon-chevron-right"></span></a>
+</div>
+<!-- 主体内容 -->
+<div class="container">
+  <div class="row row-3">
+
+    <div class="col-md-4">
+      <!-- 企业概况 -->
+      <span class="part1">
+        <a href="{% url 'aboutApp:survey' %}">企业概况</a>
+      </span>
+      <span class="part1 en">
+        &nbsp;&nbsp;/ About Us
+      </span>
+      <div class="line1">
+        <div class="line2 theme"></div>
+      </div>
+      <div style="margin-top:20px;">
+        <img class="img-responsive" src="{% static 'img/aboutCompany.jpg' %}">
+        <p class="text1">
+          火焰工作室于2019年成立，创始人为刘炳毅，第二任与第三任室
+          长分别为王玎珰和符汉衡。曾经一度霸占Python区榜首十分长一
+          段时间，是曾经Python区是一属二的老工作室。
+        </p>
+      </div>
+    </div>
+
+    <div class="col-md-8">
+      <!-- 新闻动态 -->
+      <span class="part1">
+        <a href="#">新闻动态</a>
+      </span>
+      <span class="part1 en">
+        &nbsp;&nbsp;/ News
+      </span>
+      <a class="btn btn-default btn-xs more-btn" href="{% url 'newsApp:news' 'company' %}">
+        +&nbsp;更多
+      </a>
+      <div class="line1">
+        <div class="line2 theme"></div>
+      </div>
+      <div class="col-md-5">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators nav-point">
+            {% for post in postList %}
+            <li data-target="#myCarousel" data-slide-to="{{forloop.counter0}}" {% if forloop.first %} class="active"
+              {% endif %}>
+            </li>
+            {% endfor %}
+          </ol>
+          <!-- 轮播（Carousel）项目 -->
+          <div class="carousel-inner" style="margin-top:15px;">
+            {% for post in postList %}
+            <div {% if forloop.first %} class="item active" {% else %} class="item" {% endif %}
+              style="background-size:cover;">
+              <a href="{% url 'newsApp:newDetail' post.id %}">
+                <img src="{{post.photo.url}}" class="img-responsive" onload="DrawImage(this)"></a>
+              <div class="carousel-caption nav-title">{{post.title}}</div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="col-md-7">
+        <ul class="list-unstyled list-new">
+          {% for mynew in newList %}
+          <li>
+            <a href="{% url 'newsApp:newDetail' mynew.id %}">
+              {{mynew.title|truncatechars:"15"}}</a>
+            <span>【{{mynew.publishDate|date:"Y-m-d"}}】</span>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row row-3">
+
+    <div class="col-md-4">
+      <!-- 通知公告 -->
+      <span class="part1">
+        <a href="#">通知公告</a>
+      </span>
+      <span class="part1 en">
+        &nbsp;&nbsp;/ Public Release
+      </span>
+      <a class="btn btn-default btn-xs more-btn" href="{% url 'newsApp:news' 'notice' %}">
+        +&nbsp;更多
+      </a>
+      <div class="line1">
+        <div class="line2 theme"></div>
+      </div>
+      <div>
+        <img class="img-responsive" src="{% static 'img/note.jpg' %}">
+        <ul class="list-unstyled list-new">
+          {% for note in noteList %}
+          <li>
+            <a href="{% url 'newsApp:newDetail' note.id %}">
+              {{note.title|truncatechars:"25"}}
+            </a>
+            <a href="{% url 'newsApp:newDetail' note.id %}" class="public-detail">
+              查看详情>>
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+
+    </div>
+
+    <div class="col-md-4">
+      <!-- 科研基地 -->
+      <span class="part1">
+        <a href="{% url 'scienceApp:science' %}">研发团队</a>
+      </span>
+      <span class="part1 en">
+        &nbsp;&nbsp;/ Technology Center
+      </span>
+      <div class="line1">
+        <div class="line2 theme"></div>
+      </div>
+      <div>
+        <a href="{% url 'scienceApp:science' %}">
+          <img class="img-responsive" src="{% static 'img/ky.jpg' %}">
+        </a>
+        <p class="text1">
+          <font color="#d30a1c">火焰工作室研发团队</font>
+          近两年来，火焰工作室在Python区一直都有着很的
+          热度，其中各项目的负责人实力强悍，管理能力强，
+          有许多的热门作品。在新火焰工作室，我们又增添了
+          更多的新项目例如：Scratch跑酷、C++大作、Web
+          框架工程等。
+        </p>
+      </div>
+
+    </div>
+
+    <div class="col-md-4">
+      <!-- 联系我们 -->
+      <span class="part1">
+        <a href="{% url 'contactApp:contact' %}">联系我们</a>
+      </span>
+      <span class="part1 en">
+        &nbsp;&nbsp;/ Contact us
+      </span>
+      <div class="line1">
+        <div class="line2 theme"></div>
+      </div>
+      <div>
+        <ul class="list-unstyled procurement-li">
+          <li>业务质询一：https://code.xueersi.com/space/5697373</li>
+          <li>业务质询二：https://code.xueersi.com/space/13091644</li>
+          <li>咨询账号：https://code.xueersi.com/space/5697373</li>
+          <li>
+            网址：<a href="127.0.0.1:8000">127.0.0.1:8000</a>
+          </li>
+        </ul>
+        <div class="platform"><a href="{% url 'contactApp:contact' %}">详情</a></div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="row row-3">
+    <!-- 产品中心 -->
+    <div class="col-md-12 col-pro">
+
+      <span class="part1">
+        <a href="{% url 'productsApp:products' 'robot' %}">产品中心</a>
+      </span>
+      <span class="part1 en">
+        &nbsp;&nbsp;/ Products
+      </span>
+      <a class="btn btn-default btn-xs more-btn" href="{% url 'productsApp:products' 'robot' %}">
+        +&nbsp;更多
+      </a>
+      <div class="line1" style="margin-bottom:5px;">
+        <div class="line2 theme"></div>
+      </div>
+      <div class="col-md-12 col-pro">
+        <div id="Carousel" class="carousel slide" style="margin-bottom:30px">
+          <ol class="carousel-indicators" style="display:none;">
+            <li data-target="#Carousel" data-slide-to="0" class="active"></li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="item active">
+              <div class="row">
+                {% for product in productList %}
+                <div class="col-md-3 pro-images">
+                  <a href="{% url 'productsApp:productDetail' product.id %}" class="thumbnail">
+                    {% for img in product.productImgs.all %}
+                    {% if forloop.first %}
+                    <img src="{{img.photo.url}}" alt="产品图片" class="img-responsive" onload="DrawImage(this)">
+                    {% endif %}
+                    {% endfor %}
+                  </a>
+                  <div class="carousel-caption nav-title">{{product.title}}</div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row row-3">
+    <!-- 友情链接 -->
+    <div class="col-md-12">
+    </div>
+  </div>
+
+</div>
+
+<script>
+  //处理缩略图
+  function DrawImage(hotimg) {
+    $(hotimg).jqthumb({
+      width: '100%', // 宽度
+      height: '220px', // 高度
+      zoom: '1', // 缩放比例
+      method: 'auto' // 提交方法，用于不同的浏览器环境，默认为‘auto’
+    });
+  }
+</script>
+{% endblock %}

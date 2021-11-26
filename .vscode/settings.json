@@ -1,0 +1,18 @@
+{
+    "explorer.confirmDragAndDrop": false,
+    "workbench.colorTheme": "Visual Studio Dark - C++",
+    "editor.quickSuggestions": {
+        "strings": true
+    },
+    "editor.suggestSelection": "first",
+    "files.watcherExclude": {
+        "**/.git/objects/**": false,
+        "**/.git/subtree-cache/**": false,
+    },
+    "files.exclude": {
+        "**/.git": false,
+        "**/.DS_Store": false,
+        "**/Thumbs.db": false
+    },
+    "git.autofetch": true
+}

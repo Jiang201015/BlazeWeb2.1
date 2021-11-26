@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}
+人才招聘
+{% endblock %}
+
+{% block content %}
+<link href="{% static 'css/contact.css' %}" rel="stylesheet">
+<!-- 广告横幅 -->
+<div class="container-fluid">
+    <div class="row">
+        <img class="img-responsive model-img" src="{% static 'img/contact.jpg' %}">
+    </div>
+</div>
+<!-- 主体内容 -->
+<div class="container">
+    <div class="row row-3">
+        <!-- 侧边导航栏 -->
+        <div class="col-md-3">
+            <div class="model-title">
+                人才招聘
+            </div>
+            <div class="model-list">
+                <ul class="list-group">
+                    <li class="list-group-item" id="contact">
+                        <a href="{% url 'contactApp:contact' %}">欢迎咨询</a>
+                    </li>
+                    <li class="list-group-item" id="recruit">
+                        <a href="{% url 'contactApp:recruit' %}">加入火焰</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- 说明文字和图片 -->
+        <div class="col-md-9">
+            <div class="model-details-title">
+                欢迎咨询
+            </div>
+            <div class="col-md-4">
+                <div class="contact-left">
+                    <h1>
+                        <strong>火焰工作室</strong>
+                        <span>Blaze Studio</span>
+                    </h1>
+                    <ul>
+                        <li><span>业务质询一：</span>https://code.xueersi.com/space/5697373</li>
+                        <li><span>业务质询二：</span>https://code.xueersi.com/space/13091644</li>
+                        <li><span>咨询账号：</span>https://code.xueersi.com/space/13091644</li>
+                        <li><span>网址：</span>
+                            <a href="127.0.0.1:8000">127.0.0.1:8000</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-8" style="margin-top: 20px;">
+                <div style="width:500px;height:400px;border:#ccc solid 1px;" id="dituContent"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

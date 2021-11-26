@@ -1,0 +1,3 @@
+POST : 3306
+USER : root
+PASSWORD:pythonweb

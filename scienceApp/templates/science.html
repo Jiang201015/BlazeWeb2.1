@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}
+研发团队
+{% endblock %}
+
+{% block content %}
+<!-- 广告横幅 -->
+<div class="container-fluid">
+    <div class="row">
+        <img class="img-responsive model-img" src="{% static 'img/science.jpg' %}" alt="科研基地">
+    </div>
+</div>
+<div class="container">
+    <!-- 主体标题 -->
+    <div class="model-details-title">
+        研发团队介绍
+    </div>
+    <!-- 主体内容 -->
+    <div class="model-details">
+        <p>
+            近两年来，火焰工作室在Python区一直都有着很的
+            热度，其中各项目的负责人实力强悍，管理能力强，
+            有许多的热门作品。在新火焰工作室，我们又增添了
+            更多的新项目例如：Scratch跑酷、C++大作、Web
+            框架工程等。
+        </p>
+        <img class="img-responsive" style="max-width:700px;" src="{% static 'img/kyjd.jpg' %}">
+        <h3>研究方向</h3>
+        <h5>游戏作品：</h5>
+        <p>
+            作品模块有很多大多的是Pygame、Tkinter、EasyGUI等，好玩有趣。
+        </p>
+        <h5>技术作品：</h5>
+        <p>
+            大多都是技术流作品，例如BlazeComputer、BlazeWeb、Blaze浏览器。
+        </p>
+        <h5>教程作品</h5>
+        <p>
+            很多牛逼教程的出处。
+        </p>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}
+企业概况
+{% endblock %}
+
+{% block content %}
+<!-- 广告横幅 -->
+<div class="container-fluid">
+    <div class="row">
+        <img class="img-responsive model-img" src="{% static 'img/about.jpg' %}">
+    </div>
+</div>
+<!-- 主体内容 -->
+<div class="container">
+    <div class="row row-3">
+        <!-- 侧边导航栏 -->
+        <div class="col-md-3">
+            <div class="model-title">
+                工作室简介
+            </div>
+            <div class="model-list">
+                <ul class="list-group">
+                    <li class="list-group-item" id="survey">
+                        <a href="{% url 'aboutApp:survey' %}">工作室概况</a>
+                    </li>
+                    <li class="list-group-item" id="honor">
+                        <a href="{% url 'aboutApp:honor' %}">荣誉资质</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- 说明文字和图片 -->
+        <div class="col-md-9">
+            <div class="model-details-title">
+                工作室概况
+            </div>
+            <div class="model-details">
+                <div class="row">
+                    <img class="img-responsive" src="{% static 'img/aboutCompany.jpg' %}">
+                </div>
+                <p>
+                    火焰工作室于2019年成立，创始人为刘炳毅，第二任与第三任室
+                    长分别为王玎珰和符汉衡。曾经一度霸占Python区榜首十分长一
+                    段时间，是曾经Python区是一属二的老工作室。在里边聚集着各
+                    方面的大佬，其中有许多民间高手。火焰工作室曾经作品类型主要
+                    是：Pygame，Tkinter，爬虫三方面，而由新室长符汉衡接手后，
+                    有涌入了更多方面的人才，如Scratch、C++、标签语言、汇编语
+                    言等。
+
+                    我们的作品也有很多出名的，例如BlazeComputer、huoyanlib......
+                    而新火焰不仅扛上了前辈们的担子，也肩负起了更多的新项目，例如
+                    Scratch跑酷、Web、C++算法。在今后的日子里，我们会为各位带来
+                    更多的优秀作品，感谢大家一直以来的支持！
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
